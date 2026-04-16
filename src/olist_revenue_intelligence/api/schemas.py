@@ -42,8 +42,8 @@ class ModelInfoResponse(BaseModel):
 
     model_name: str
     threshold: float
+    artifact_threshold: float | None = None
     feature_count: int
     features: list[str]
     model_artifact_available: bool
     note: str
-

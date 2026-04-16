@@ -42,9 +42,13 @@ class PredictionService:
         """Return API-facing model metadata."""
 
         metadata = load_model_metadata()
+        artifact_threshold = metadata.get("threshold")
         return {
             "model_name": str(metadata.get("model_name", settings.final_model_name)),
-            "threshold": float(metadata.get("threshold", self.threshold)),
+            "threshold": float(self.threshold),
+            "artifact_threshold": (
+                float(artifact_threshold) if artifact_threshold is not None else None
+            ),
             "feature_count": len(settings.model_features),
             "features": settings.model_features,
             "model_artifact_available": self.model_available,
@@ -57,4 +61,3 @@ def get_prediction_service() -> PredictionService:
     """Cached service dependency for FastAPI."""
 
     return PredictionService()
-

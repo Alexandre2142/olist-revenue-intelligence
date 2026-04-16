@@ -41,11 +41,14 @@ dist/
 # Logs
 *.log
 
-# Models / trained artifacts
-models/*.pkl
-models/*.joblib
-models/*.bin
-models/*.onnx
+# Model artifacts
+# V1 intentionally tracks selected files under models/trained, models/metrics,
+# and models/artifacts so the portfolio API can run immediately after clone.
+# Keep ad hoc root-level model dumps out of git.
+/models/*.pkl
+/models/*.joblib
+/models/*.bin
+/models/*.onnx
 
 # Ignore raw datasets
 data/raw/*

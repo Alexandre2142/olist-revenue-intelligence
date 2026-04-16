@@ -37,12 +37,14 @@ model = tuned XGBoost
 threshold = 0.7
 ```
 
+The `0.7` threshold should be interpreted as a high-confidence alert threshold. In the current retained artifact, it produces very few positive alerts: precision is high, but recall is extremely low. This is useful for strict escalation, not broad late-delivery coverage.
+
 The model is a risk prioritization tool, not a high-precision autonomous classifier.
 
 ## Project Structure
 
 ```text
-data/                         Raw, interim, processed, and exported datasets
+data/                         Raw placeholders, processed datasets, and exports
 notebooks/                    Original BI and DS notebooks
 powerbi/                      Power BI report and screenshots
 src/olist_revenue_intelligence/
@@ -51,7 +53,6 @@ src/olist_revenue_intelligence/
   features/                   Feature definitions, leakage audit, preprocessing
   models/                     Training, tuning, evaluation, registry, prediction
   api/                        FastAPI schemas, service, and routes
-  visualization/              Optional plotting helpers
   utils/                      Paths, logging, and shared helpers
 models/                       Saved model pipelines, metrics, and artifacts
 scripts/                      Runnable local workflows
@@ -195,13 +196,13 @@ Run:
 pytest
 ```
 
-The tests use small synthetic data and dependency overrides so they do not require the full Olist dataset or a trained production artifact.
+The tests use small synthetic data and temporary model artifacts, so they do not require the full Olist dataset or the committed production artifact.
 
 ## Limitations
 
 - The retained model supports operational prioritization, not autonomous decision-making.
+- The retained `0.7` threshold is intentionally conservative and should be presented as high-confidence alerting, not broad recall-oriented triage.
 - The feature set is intentionally narrow and leakage-aware.
 - The API serves one order at a time for clarity.
 - Docker is local-only and does not imply cloud production deployment.
 - Metrics should be interpreted in the context of delivery-risk triage and business cost tradeoffs.
-
