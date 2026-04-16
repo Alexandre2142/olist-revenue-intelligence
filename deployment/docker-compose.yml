@@ -1,0 +1,13 @@
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      MODEL_THRESHOLD: "0.7"
+      MODEL_PATH: "models/trained/best_model_pipeline.joblib"
+    volumes:
+      - ../models:/app/models
+

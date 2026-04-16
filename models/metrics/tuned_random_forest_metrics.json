@@ -1,0 +1,21 @@
+{
+  "accuracy": 0.9029750181403545,
+  "average_precision": 0.24024607859267816,
+  "best_cv_score": 0.239690160260614,
+  "best_params": {
+    "model__max_depth": 14,
+    "model__max_features": "sqrt",
+    "model__min_samples_leaf": 10,
+    "model__n_estimators": 350
+  },
+  "f1": 0.2553699284009546,
+  "false_negatives": 1244,
+  "false_positives": 628,
+  "model_name": "tuned_random_forest",
+  "precision": 0.3382507903055848,
+  "recall": 0.20511182108626197,
+  "roc_auc": 0.757721009800192,
+  "threshold": 0.7,
+  "true_negatives": 17101,
+  "true_positives": 321
+}

@@ -1,0 +1,30 @@
+variable,decision,reason
+order_id,KEEP_ID_ONLY,"Identifier used for traceability and export, not as model input"
+customer_id,DROP,"Technical identifier, no predictive meaning as raw input"
+customer_unique_id,DROP_FROM_V1_MODEL,"Useful for future history engineering, but not as raw input"
+customer_city,DROP,High cardinality for a first version
+customer_state,KEEP,Known before outcome and analytically relevant
+order_status,DROP,Not useful in delivered-only scope / may be constant or post-process dependent
+order_purchase_timestamp,TRANSFORM_THEN_DROP,Used to derive purchase-time calendar features
+order_approved_at,DROP,Ambiguous timing and not necessary for V1
+order_delivered_carrier_date,DROP,Post-purchase logistics event
+order_delivered_customer_date,DROP,Realized outcome date
+order_estimated_delivery_date,TRANSFORM_THEN_DROP,Used to derive estimated_delivery_days
+order_month,DROP,Redundant with reconstructed temporal features
+order_year,DROP,Low value in this first version
+order_revenue,KEEP,Order-level structural feature
+n_items,KEEP,Order complexity proxy
+n_sellers,KEEP,Order complexity proxy
+n_categories,KEEP,Order complexity proxy
+order_revenue_per_item,KEEP,Derived structural proxy
+delivery_lead_time_days,DROP,Derived from realized delivery
+estimated_vs_actual_days,DROP,Direct leakage from realized outcome
+is_late,KEEP_TARGET,Target variable
+review_score,DROP,Post-delivery feedback
+n_reviews,DROP,Post-delivery feedback
+review_creation_date,DROP,Post-delivery feedback timestamp
+review_answer_timestamp,DROP,Post-delivery feedback timestamp
+has_review,DROP,Post-delivery feedback
+is_low_review,DROP,Post-delivery feedback
+is_neutral_review,DROP,Post-delivery feedback
+is_high_review,DROP,Post-delivery feedback

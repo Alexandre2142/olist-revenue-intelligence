@@ -1,0 +1,60 @@
+# Python cache / compiled
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env / secrets
+.env
+.env.*
+*.env
+!.env.example
+
+# Tool caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
+
+# Models / trained artifacts
+models/*.pkl
+models/*.joblib
+models/*.bin
+models/*.onnx
+
+# Ignore raw datasets
+data/raw/*
+!data/raw/.gitkeep
+
+# Ignore processed outputs by default
+data/processed/*
+
+# Keep main analytical dataset
+!data/processed/fact_order_items.csv
+!data/processed/fact_orders.csv
+!data/processed/late_delivery_modeling_dataset.csv

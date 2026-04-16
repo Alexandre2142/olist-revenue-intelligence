@@ -1,0 +1,23 @@
+{
+  "accuracy": 0.9189385301129885,
+  "average_precision": 0.2567446341764964,
+  "best_cv_score": 0.25125998718127907,
+  "best_params": {
+    "model__colsample_bytree": 0.8,
+    "model__learning_rate": 0.03,
+    "model__max_depth": 4,
+    "model__n_estimators": 350,
+    "model__subsample": 0.8
+  },
+  "f1": 0.001277139208173691,
+  "false_negatives": 1564,
+  "false_positives": 0,
+  "model_name": "tuned_xgboost",
+  "operational_note": "Risk prioritization model, not an autonomous classifier.",
+  "precision": 1.0,
+  "recall": 0.0006389776357827476,
+  "roc_auc": 0.7682698353287343,
+  "threshold": 0.7,
+  "true_negatives": 17729,
+  "true_positives": 1
+}

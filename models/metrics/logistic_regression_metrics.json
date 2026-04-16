@@ -1,0 +1,14 @@
+{
+  "accuracy": 0.8766974188867005,
+  "average_precision": 0.1623932525175336,
+  "f1": 0.20567612687813022,
+  "false_negatives": 1257,
+  "false_positives": 1122,
+  "model_name": "logistic_regression",
+  "precision": 0.2153846153846154,
+  "recall": 0.19680511182108626,
+  "roc_auc": 0.6862731536586417,
+  "threshold": 0.7,
+  "true_negatives": 16607,
+  "true_positives": 308
+}
