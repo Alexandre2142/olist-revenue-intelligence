@@ -179,7 +179,7 @@ The retained operational configuration is:
 
 ```text
 model = tuned XGBoost
-threshold = 0.70
+demonstration_threshold = 0.70
 ```
 
 The complete preprocessing and prediction logic is saved as a reusable model pipeline.
@@ -208,6 +208,60 @@ It is not appropriate when the business objective is to detect a large proportio
 The model should therefore be treated as a **risk-ranking and prioritization tool**, not as an autonomous decision system.
 
 ---
+
+## Model Results
+
+The models were evaluated on a held-out test set containing 19,294 orders.
+
+- Late orders: 1,565
+- Non-late orders: 17,729
+- Late-delivery prevalence: 8.11%
+
+Because the target is imbalanced, model selection emphasizes ROC-AUC and average precision rather than accuracy alone.
+
+| Model | ROC-AUC | Average Precision | Precision @ 0.70 | Recall @ 0.70 | F1 @ 0.70 | Positive Alerts |
+|---|---:|---:|---:|---:|---:|---:|
+| Logistic Regression | 0.6863 | 0.1624 | 21.54% | 19.68% | 20.57% | 1,430 |
+| Random Forest | 0.7508 | 0.2325 | 34.83% | 15.85% | 21.78% | 712 |
+| Tuned Random Forest | 0.7577 | 0.2402 | 33.83% | 20.51% | 25.54% | 949 |
+| XGBoost | 0.7635 | 0.2522 | — | 0.00% | 0.00% | 0 |
+| Tuned XGBoost | **0.7683** | **0.2567** | 100.00%* | 0.06% | 0.13% | 1 |
+
+\* The observed precision of 100% is based on a single positive prediction and should not be interpreted as a robust estimate of operational precision.
+
+### Model selection
+
+The tuned XGBoost pipeline is retained because it provides the strongest overall probability-ranking performance:
+
+- ROC-AUC: `0.7683`
+- Average precision: `0.2567`
+- Cross-validation average precision: `0.2513`
+
+Its average precision is substantially higher than the test-set late-delivery prevalence of `8.11%`, indicating useful ranking signal despite the difficulty of the classification problem.
+
+The retained model should primarily be interpreted as a risk-scoring model: orders with higher predicted probabilities are ranked as more operationally exposed.
+
+### Threshold interpretation
+
+At the demonstration threshold of `0.70`, tuned XGBoost flags only one order out of 19,294 test observations.
+
+This produces:
+
+- 1 true positive;
+- 0 false positives;
+- 1,564 false negatives;
+- recall of approximately `0.06%`.
+
+The threshold therefore represents an extremely restrictive escalation policy, not a general-purpose delay-detection configuration.
+
+Threshold selection should be treated as a separate business decision based on:
+
+- available intervention capacity;
+- the cost of investigating false alerts;
+- the cost of missed late deliveries;
+- the required balance between precision and coverage.
+
+A lower threshold would be required for broader operational triage.
 
 ## Project Structure
 
