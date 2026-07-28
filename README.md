@@ -38,6 +38,75 @@ The objective is not to automate operational decisions. The model is intended to
 
 ---
 
+## Key Business Findings
+
+The Power BI analysis covers approximately 96,000 orders, 93,000 customers, and R$15 million in revenue.
+
+> The dashboard-wide late-delivery rate of `6.8%` is calculated on the broader analytical population. The `8.11%` prevalence reported in the modeling section refers specifically to the held-out machine-learning test set.
+
+### 1. Revenue is highly concentrated geographically
+
+São Paulo alone represents approximately `37.4%` of total revenue, while the five largest states account for `73.2%`.
+
+This concentration creates a dual priority:
+
+- preserve execution quality in the largest healthy anchor markets;
+- address operational weakness where high revenue exposure overlaps with delivery friction.
+
+**Decision implication:** operational resources should be allocated according to commercial exposure, rather than treating all underperforming states equally.
+
+### 2. Rio de Janeiro is the most commercially significant fragile market
+
+Rio de Janeiro represents approximately `13.3%` of total revenue, but records:
+
+- a late-delivery rate of `12.1%`;
+- approximately `3.0` percentage points more delays than the global benchmark;
+- an average review score of `3.97`, below the broader benchmark.
+
+Bahia, Ceará, and Pará also display elevated late-delivery rates between approximately `11.2%` and `13.8%`, combined with below-benchmark customer feedback.
+
+**Decision implication:** Rio de Janeiro should be the first geographic remediation priority because it combines substantial revenue exposure with weaker execution. Bahia, Ceará, and Pará form a second intervention group.
+
+### 3. The customer base shows limited repeat behavior
+
+The repeat-customer rate is approximately `3.0%`, while single-order customers account for roughly `94.4%` of revenue.
+
+This indicates that commercial scale is currently driven primarily by customer acquisition and transaction volume rather than strong repeat purchasing.
+
+**Decision implication:** delivery reliability and post-purchase experience should be treated not only as operational issues, but also as potential customer-retention levers.
+
+### 4. Portfolio value is not evenly distributed across risk segments
+
+The category portfolio contains a substantial core-fragile segment that represents the largest revenue block, despite weaker operational characteristics.
+
+The seller portfolio also shows that seller counts and revenue contribution are not aligned uniformly across healthy and fragile groups.
+
+**Decision implication:** category and seller interventions should prioritize segments where revenue concentration and operational fragility overlap, instead of focusing only on the weakest isolated entities.
+
+---
+
+## Business Intelligence Dashboard
+
+### Executive overview
+
+![Olist Revenue Intelligence executive overview](powerbi/screenshots/p1.png)
+
+The executive page consolidates business scale, execution health, geographic exposure, and category-portfolio risk into a single decision-oriented view.
+
+### Geographic exposure and operational friction
+
+![Olist geographic exposure and operational friction](powerbi/screenshots/p5.png)
+
+The geographic analysis distinguishes healthy anchor markets from fragile priority markets by combining revenue share, late-delivery performance, and customer-review signals.
+
+### Strategic recommendations
+
+![Olist strategic recommendations](powerbi/screenshots/p6.png)
+
+The final page converts the analytical findings into sequenced priorities: stabilize high-value fragile markets, protect healthy anchors, and allocate intervention effort according to exposure.
+
+---
+
 ## Decision Layers
 
 ### Business Intelligence
